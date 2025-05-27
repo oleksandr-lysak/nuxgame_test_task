@@ -2,8 +2,8 @@
 
 ## 1. Клонування репозиторію
 ```
-git clone <repo-url>
-cd nuxgame
+git clone https://github.com/oleksandr-lysak/nuxgame_test_task.git
+cd nuxgame_test_task
 ```
 
 ## 2. Встановлення залежностей
