@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('user_name');
-            $table->string('phone_number');
+            $table->string('user_name')->unique();
+            $table->string('phone_number')->unique();
             $table->string('token')->unique();
             $table->timestamp('expires_at');
             $table->boolean('active')->default(true);
