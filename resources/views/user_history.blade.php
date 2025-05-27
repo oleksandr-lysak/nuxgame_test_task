@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
     <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
-        <h1 class="text-2xl font-bold mb-4 text-center">History for {{ $userLink->username }}</h1>
+        <h1 class="text-2xl font-bold mb-4 text-center">History for {{ $user->user_name }}</h1>
         @if(count($history) > 0)
             <ul class="mb-4">
                 @foreach($history as $item)
@@ -23,7 +23,7 @@
         @else
             <p class="text-center text-gray-600 mb-4">No history yet.</p>
         @endif
-        <a href="{{ route('user.link.show', $userLink->token) }}" class="block w-full bg-gray-500 text-white py-2 rounded text-center hover:bg-gray-600 transition">Back</a>
+        <a href="{{ route('user.show', $user->token) }}" class="block w-full bg-gray-500 text-white py-2 rounded text-center hover:bg-gray-600 transition">Back</a>
     </div>
 </body>
 </html> 

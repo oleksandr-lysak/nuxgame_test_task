@@ -21,12 +21,12 @@
         <form method="POST" action="{{ route('register.submit') }}" class="space-y-4">
             @csrf
             <div>
-                <label class="block mb-1 font-medium">Username:</label>
-                <input type="text" name="username" value="{{ old('username') }}" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <label class="block mb-1 font-medium">User Name:</label>
+                <input type="text" name="user_name" value="{{ old('user_name') }}" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
             </div>
             <div>
                 <label class="block mb-1 font-medium">Phone number:</label>
-                <input type="text" name="phonenumber" value="{{ old('phonenumber') }}" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <input type="text" name="phone_number" value="{{ old('phone_number') }}" required class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
             </div>
             <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Register</button>
         </form>

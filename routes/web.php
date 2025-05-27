@@ -9,8 +9,8 @@ use App\Http\Controllers\UserController;
 Route::get('/', [RegistrationController::class, 'showForm'])->name('register.form');
 Route::post('/register', [RegistrationController::class, 'register'])->name('register.submit');
 
-// Group of routes for user unique link actions
-Route::prefix('link')->name('user.link.')->group(function () {
+// Group of routes for user actions
+Route::prefix('link')->name('user.')->group(function () {
     Route::get('{token}', [UserController::class, 'show'])->name('show');
     Route::post('{token}/regenerate', [UserController::class, 'regenerate'])->name('regenerate');
     Route::post('{token}/deactivate', [UserController::class, 'deactivate'])->name('deactivate');

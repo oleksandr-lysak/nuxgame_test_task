@@ -25,30 +25,30 @@ class UserController extends Controller
     public function show($token)
     {
         $user = $this->userService->getActiveUserOrFail($token);
-        return view('user_link', ['userLink' => $user]);
+        return view('user', ['user' => $user]);
     }
 
-    public function regenerate(RegenerateLinkRequest $request, $token)
+    public function regenerate($token)
     {
         $user = $this->userService->getActiveUserOrFail($token);
         $user = $this->userService->regenerate($user);
-        return redirect()->route('user.link.show', ['token' => $user->token]);
+        return redirect()->route('user.show', ['token' => $user->token]);
     }
 
-    public function deactivate(DeactivateLinkRequest $request, $token)
+    public function deactivate($token)
     {
         $user = $this->userService->getActiveUserOrFail($token);
         $this->userService->deactivate($user);
         return redirect('/')->with('status', 'Link deactivated.');
     }
 
-    public function lucky(LuckyRequest $request, $token)
+    public function lucky($token)
     {
         $user = $this->userService->getActiveUserOrFail($token);
         $luckyResult = $this->luckyService->generateLuckyResult($user);
         $message = "Number: {$luckyResult->number} | Result: {$luckyResult->result} | Prize: {$luckyResult->prize}";
-        return view('user_link', [
-            'userLink' => $user,
+        return view('user', [
+            'user' => $user,
             'message' => $message,
             'luckyResult' => [
                 'number' => $luckyResult->number,
@@ -62,6 +62,6 @@ class UserController extends Controller
     {
         $user = $this->userService->getActiveUserOrFail($token);
         $history = $this->luckyService->getLastResults($user, 3);
-        return view('user_link_history', ['userLink' => $user, 'history' => $history]);
+        return view('user_history', ['user' => $user, 'history' => $history]);
     }
 } 

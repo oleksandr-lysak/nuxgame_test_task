@@ -8,23 +8,23 @@
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
     <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
-        <h1 class="text-2xl font-bold mb-2 text-center">Welcome, {{ $userLink->username }}!</h1>
-        <p class="mb-2 text-gray-700 text-center">Your phone number: <span class="font-semibold">{{ $userLink->phonenumber }}</span></p>
-        <p class="mb-4 text-gray-700 text-center">Link valid until: <span class="font-semibold">{{ $userLink->expires_at->format('d.m.Y H:i') }}</span></p>
+        <h1 class="text-2xl font-bold mb-2 text-center">Welcome, {{ $user->user_name }}!</h1>
+        <p class="mb-2 text-gray-700 text-center">Your phone number: <span class="font-semibold">{{ $user->phone_number }}</span></p>
+        <p class="mb-4 text-gray-700 text-center">Link valid until: <span class="font-semibold">{{ $user->expires_at->format('d.m.Y H:i') }}</span></p>
         <div class="flex flex-col gap-3 mb-4">
-            <form method="POST" action="{{ route('user.link.regenerate', $userLink->token) }}">
+            <form method="POST" action="{{ route('user.regenerate', $user->token) }}">
                 @csrf
                 <button type="submit" class="w-full bg-yellow-500 text-white py-2 rounded hover:bg-yellow-600 transition">Generate new link</button>
             </form>
-            <form method="POST" action="{{ route('user.link.deactivate', $userLink->token) }}">
+            <form method="POST" action="{{ route('user.deactivate', $user->token) }}">
                 @csrf
                 <button type="submit" class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition">Deactivate link</button>
             </form>
-            <form method="POST" action="{{ route('user.link.lucky', $userLink->token) }}">
+            <form method="POST" action="{{ route('user.lucky', $user->token) }}">
                 @csrf
                 <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">I'm feeling lucky</button>
             </form>
-            <form method="GET" action="{{ route('user.link.history', $userLink->token) }}">
+            <form method="GET" action="{{ route('user.history', $user->token) }}">
                 <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">History</button>
             </form>
         </div>

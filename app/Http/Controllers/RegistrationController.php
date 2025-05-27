@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use App\Models\User;
-use Illuminate\Support\Carbon;
 use App\Http\Requests\RegisterRequest;
 use App\Services\UserService;
 
@@ -14,27 +10,20 @@ use App\Services\UserService;
  */
 class RegistrationController extends Controller
 {
-    private UserService $userService;
-
-    public function __construct(UserService $userService)
-    {
-        $this->userService = $userService;
-    }
-
     public function showForm()
     {
         return view('register');
     }
 
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request, UserService $userService)
     {
-        $user = $this->userService->create(
-            $request->input('username'),
-            $request->input('phonenumber')
+        $user = $userService->create(
+            $request->input('user_name'),
+            $request->input('phone_number')
         );
 
         return view('register_success', [
-            'link' => route('user.link.show', ['token' => $user->token])
+            'link' => route('user.show', ['token' => $user->token])
         ]);
     }
 } 
